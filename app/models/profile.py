@@ -26,3 +26,9 @@ class Profile(Base):
         back_populates="profile",
         cascade="all, delete-orphan",
     )
+
+    feedbacks = relationship(
+        "Feedback",
+        back_populates="profile",
+        cascade="all, delete-orphan",
+    )
