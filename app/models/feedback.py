@@ -10,13 +10,13 @@ class Feedback(Base):
     id = Column(Integer, primary_key=True, index=True)
     message = Column(Text, nullable=False)
 
-    profile_id = Column(
+    project_id = Column(
         Integer,
-        ForeignKey("profiles.id", ondelete="CASCADE"),
+        ForeignKey("projects.id", ondelete="CASCADE"),
         nullable=False,
     )
 
-    profile = relationship(
-        "Profile",
+    project = relationship(
+        "Project",
         back_populates="feedbacks",
     )

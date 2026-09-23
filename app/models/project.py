@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Text, ForeignKey
 from sqlalchemy.orm import relationship
 
 from app.database import Base
+from app.models.project_technology import project_technologies
 
 
 class Project(Base):
@@ -21,4 +22,16 @@ class Project(Base):
     profile = relationship(
         "Profile",
         back_populates="projects",
+    )
+
+    technologies = relationship(
+        "Technology",
+        secondary=project_technologies,
+        back_populates="projects",
+    )
+
+    feedbacks = relationship(
+        "Feedback",
+        back_populates="project",
+        cascade="all, delete-orphan",
     )

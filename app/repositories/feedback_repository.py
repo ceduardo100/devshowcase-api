@@ -7,7 +7,7 @@ from app.schemas.feedback import FeedbackCreate
 def create_feedback(db: Session, feedback_data: FeedbackCreate):
     feedback = Feedback(
         message=feedback_data.message,
-        profile_id=feedback_data.profile_id,
+        project_id=feedback_data.project_id,
     )
 
     db.add(feedback)

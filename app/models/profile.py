@@ -2,7 +2,6 @@ from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.orm import relationship
 
 from app.database import Base
-from app.models.profile_technology import profile_technologies
 
 
 class Profile(Base):
@@ -15,20 +14,8 @@ class Profile(Base):
     github_url = Column(String(255), nullable=True)
     linkedin_url = Column(String(255), nullable=True)
 
-    technologies = relationship(
-        "Technology",
-        secondary=profile_technologies,
-        back_populates="profiles",
-    )
-
     projects = relationship(
         "Project",
-        back_populates="profile",
-        cascade="all, delete-orphan",
-    )
-
-    feedbacks = relationship(
-        "Feedback",
         back_populates="profile",
         cascade="all, delete-orphan",
     )
