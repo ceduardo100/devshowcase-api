@@ -19,5 +19,24 @@ def create_project(db: Session, project_data: ProjectCreate):
     return project
 
 
-def get_all_projects(db: Session):
-    return db.query(Project).all()
+def get_all_projects(
+    db: Session,
+    technology_id: int | None = None,
+    page: int = 1,
+    limit: int = 10,
+):
+    query = db.query(Project)
+
+    if technology_id is not None:
+        query = query.filter(
+            Project.technologies.any(id=technology_id)
+        )
+
+    offset = (page - 1) * limit
+
+    return (
+        query
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )

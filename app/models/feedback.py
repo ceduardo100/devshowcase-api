@@ -9,6 +9,7 @@ class Feedback(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     message = Column(Text, nullable=False)
+    rating = Column(Integer, nullable=False)
 
     project_id = Column(
         Integer,

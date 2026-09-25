@@ -14,6 +14,8 @@ class ProjectResponse(BaseModel):
     description: str | None = None
     github_url: HttpUrl | None = None
     profile_id: int
+    upvotes: int
+    average_rating: float
 
     class Config:
         from_attributes = True

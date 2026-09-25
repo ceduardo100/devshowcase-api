@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, Float
 from sqlalchemy.orm import relationship
 
 from app.database import Base
@@ -12,6 +12,9 @@ class Project(Base):
     title = Column(String(150), nullable=False)
     description = Column(Text, nullable=True)
     github_url = Column(String(255), nullable=True)
+
+    upvotes = Column(Integer, nullable=False, default=0)
+    average_rating = Column(Float, nullable=False, default=0.0)
 
     profile_id = Column(
         Integer,
